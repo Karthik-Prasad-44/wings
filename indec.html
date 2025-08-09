@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood Detector</title>
+  <style>
+    body {
+      background-image: url(guru.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #ffff00;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .finger-scan {
+      width: 150px;
+      height: 150px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .scan-line {
+      position: absolute;
+      width: 100%;
+      height: 5px;
+      background: lime;
+      animation: scan 2s infinite linear;
+      opacity: 0;
+    }
+    @keyframes scan {
+      0% { top: 0; }
+      100% { top: 100%; }
+    }
+    #status {
+      margin-top: 15px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>മൂഡ്  ഗുരുജി 🧘‍♂</h1>
+    <p>നിങ്ങളുടെ വിരൽ scanneril വെക്കുക 🤌</p>
+
+    <div class="finger-scan" id="scanner">
+      <div class="scan-line" id="scanLine"></div>
+    </div>
+    <div id="status"></div>
+  </div>
+
+  <script>
+    const scanner = document.getElementById('scanner');
+    const scanLine = document.getElementById('scanLine');
+    const status = document.getElementById('status');
+
+    const funnyMoods = [
+      "നല്ല വിശപ്പ്",
+      "Mood: മൂഞ്ചിയ ദിവസം ",
+      "Warning: നീ ഒരു മൊണ്ണ ആണ്",
+      "Current status: അഞ്ചിന്റെ പൈസ ഇല്ല",
+      "ഏത് മൂഡ്: പൊളി മൂഡ്",
+      "Alert:നമ്മൾ ഗുണ്ടകൾ അല്ല ",
+      "Mood: 404 Motivation Not Found",
+      "നീ ഒരു കിഴങ്ങൻ തന്നെ",
+      "Mood: Dancing internally",
+      "Caution: Sarcasm levels critical"
+    ];
+
+    scanner.addEventListener('click', () => {
+      scanLine.style.opacity = 1;
+      status.textContent = 'ദയവായി കാത്തിരിക്കുക 👀';
+      setTimeout(() => {
+        scanLine.style.opacity = 0;
+        const randomMood = funnyMoods[Math.floor(Math.random() * funnyMoods.length)];
+        status.textContent = randomMood;
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
